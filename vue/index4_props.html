@@ -1,0 +1,69 @@
+<!-- <html>
+    <head>
+        <title>Vue Components Registration</title>
+    </head>
+    <body>
+        <div id="app">
+            <my-component></my-component>
+            <my-component2></my-component2>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        <script>
+            
+            var cmp1 = {
+                template : '<div>첫 번째 콤포넌트 : {{ cmp1Data }}</div>',
+                data :function(){
+                    return {
+                        cmp1Data : 100
+                    }
+                }
+            };
+
+            var cmp2 = {
+                template : '<div>두 번째 콤포넌트 : {{ cmp2Data }}</div>',
+                data :function(){
+                    return {
+                        cmp2Data : cmp1.data.cmp1Data
+                    }
+                }
+            };
+
+            new Vue({
+                el: '#app',
+                components: {
+                    'my-component': cmp1,
+                    'my-component2': cmp2
+                }
+            })
+        </script>
+
+    </body>
+</html> -->
+
+<html>
+    <head>
+        <title>Vue Components Registration</title>
+    </head>
+    <body>
+        <div id="app">
+            <child-component v-bind:propsdata="message"></child-component>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        <script>
+            Vue.component('child-component',{
+                props: ['propsdata'],
+                template: '<p>{{ propsdata }}</p>'
+            });
+
+            new Vue({
+                el: '#app',
+                data: {
+                    message : 'Hello Vue. passed from parent component'
+                }
+            })
+        </script>
+
+    </body>
+</html>

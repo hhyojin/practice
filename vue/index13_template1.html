@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>Vue template sample</title>
+    </head>
+    <body>
+        <div id="app">
+            <h2>데이터 바인딩</h2>
+            <p v-bind:id="idA">아이디 바인딩</p>
+            <p v-bind:class="classA">클래스 바인딩</p>
+            <p v-bind:style="styleA">스타일 바인딩</p>
+            
+            <h2>자바 스크립트 표현식</h2>
+            <!-- 자바스크립트 표현식 사용 가능 -->
+            <p>{{ message }}</p>
+            <p>{{ message + "!!!" }}</p>
+            <p>{{ message.split('').reverse().join('') }}</p>
+            
+            <!-- 자바스크립트 표현식 사용 시 주의점 -->
+            <!--<p>{{ var a = 10; }}</p>  X 선언문은 사용 불가 -->
+            <!--<p>{{ if(true) {return 100} }}</p>  X 분기 구문은 사용 불가-->
+            <p>{{ true? 100 : 0 }}</p>  <!-- O 3항 연산자는 표현 가능 -->
+
+            <p>{{ message.split('').reverse().join('') }}</p> <!-- X 복잡한 연산은 인스턴스 안에서 수행할 것 -->
+            <p>{{ reversedMessage }}</p> <!-- O 인스턴스 안 스크립트에서 computed 속성으로 계산해 최종 값만 표현 -->
+
+            <h2>뷰 디렉티브: html 태그 안에 v- 접두사를 가진 것들</h2>
+            <a v-if="flag">v-if. 지정한 데이터의 참거짓에 따라 해당 html 요소를 표시하거나 표시하지 않음</a>
+            <ul>
+                <li>v-for. 지정한 뷰 데이터 개수만큼 해당 html 태그를 반복 출력</li>
+                <li v-for="system in systems">{{ system }}</li>
+            </ul>
+            <p v-show="flag">
+                v-show. v-if와 비슷하게 진위여부에 따라 html 태그를 표시하거나 표시하지 않음. 
+                다만 v-if는 태그를 완전히 삭제하지만 v-show는 실제 태그는 남아 있고 display:none임
+            </p>
+            <h5 v-bind:id="uid">v-bind. html 태그의 기본 속성과 뷰 데이터 속성을 연결</h5>
+            <button v-on:click="popupAlert">경고창 버튼</button>
+            <p>v-on. 화면 요소의 이벤트를 감지하여 처리.</p>
+            <p>
+                v-model. form에서 주로 사용되는 속성. 폼에 입력한 값을 뷰 인스턴스 데이터와 즉시 동기화. 
+                화면에 입력한 값을 저장해 서버에 보내거나 watch와 같은 고급속성을 이용해 추가 로직 수행 가능.
+                input,select, textarea 태그에만 사용 가능. </p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        
+        <script>
+            new Vue({
+                el: '#app',
+                data :{
+                    idA: 110,
+                    classA: 'container',
+                    styleA: 'color:blue',
+                    message : 'Hello Vue.js!',
+                    flag : true,
+                    systems: ['android','ios','window'],
+                    uid: 10,
+                },
+                methods:{
+                    popupAlert: function(){
+                        return alert ('경고창');
+                    }
+                },
+                computed: {
+                    reversedMessage : function(){
+                        return this.message.split('').reverse().join('');
+                    }
+                }
+            });
+            
+        </script>
+
+    </body>
+</html>

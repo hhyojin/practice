@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Vue template sample</title>
+    </head>
+    <body>
+        <div id="app">
+            <h2>이벤트처리</h2>
+            <button v-on:click="clickBtn(10)">클릭</button>
+            <button v-on:click="clickBtn2">돔 이벤트 접근</button>
+            <h2>고급 템플릿 기법</h2>
+            <p>{{ message }}</p>
+            <button v-on:click="reverseMsg">method 문자열 역순</button>
+            <p>computed 역순: {{ reversedMessage }}</p>
+
+            <span>watch 속성<input v-model="message"></span>
+            <p>methods와 computed, watch 속성</p>
+            <ul>
+                <li>Methods: 호출할 때만 로직 수행(데이터 수동갱신)</li>
+                <li>         수행할 때만 연산하기 때문에 별도로 캐싱하지 않음.</li>
+                <li>computed: 대상 데이터 값이 변경되면 자동 재 연산 수행(데이터 자동갱신)</li>
+                <li>          장점: 자동 연산 및 캐싱(연산한 값을 미리 저장하고 있다가 필요할 때 불러옴)</li>
+                <li>watch: 데이터 변화를 감지하여 특정 로직 수행. 
+                <li>        computed와 비슷하지만 computed는 내장 api를 활용하는 간단한 연산에 적합.</li>
+                <li>  watch는 시간이 상대적으로 소모되는 비동기 처리에 적합.</li>
+            </ul>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        
+        <script>
+            
+            new Vue({
+                el: '#app',
+                data :{
+                    message : 'Hello Vue.js!',
+                    message2 : 'Hi Vue.js!'
+                },
+                methods:{
+                    clickBtn: function(num){
+                        alert('click ' + num + ' times');
+                    },
+                    clickBtn2: function(event){
+                        console.log(event);
+                    },
+                    reverseMsg: function(){
+                        this.message = this.message.split('').reverse().join('');
+                        return this.message;
+                    }
+                },
+                computed: {
+                    reversedMessage : function(){
+                        return this.message.split('').reverse().join('');
+                    }
+                },
+                watch:{
+                    message: function(data){
+                        console.log('message2의 값이 변경됨. message: ', data)
+                    }
+                }
+            });
+
+        </script>
+
+    </body>
+</html>

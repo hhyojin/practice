@@ -1,0 +1,23 @@
+<!-- 화면에 표시할 영역 정의. html + 데이터 바인딩 -->
+<template>
+    <div>
+        <span>
+            <button>{{ message }}</button>
+        </span>
+    </div>
+</template>
+
+<!-- 뷰 컴포넌트 내용 정의. template, data, methods 등 -->
+<script> 
+    export default{
+        data:{
+            message: 'click this button'
+        }
+    }
+</script>
+
+<style>
+    span{
+        font-size: 1.2em;
+    }
+</style>

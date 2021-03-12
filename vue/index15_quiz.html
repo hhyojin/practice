@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Vue template sample</title>
+    </head>
+    <body>
+        <div id="app">
+            <p v-bind:id="uid">{{ message }}</p>
+            <button v-on:click="clickEvnt">클릭이벤트</button>
+            <p v-if="flag">으믕믕므음으므으으으으</p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        
+        <script>
+            
+            new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello vue js.',
+                    uid: 10,
+                    flag:true
+                },
+                methods:{
+                    // es5 문법
+                    // clickEvnt: function(){
+                    //     alert('click event');
+                    // }
+                    
+                    //es6 문법
+                    clickEvnt(){
+                        alert('click event');
+                    }
+                }
+            });
+            
+        </script>
+
+    </body>
+</html>
